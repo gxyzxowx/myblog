@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-20 13:50:12
  * @LastEditors: 曾迪
- * @LastEditTime: 2020-07-24 17:50:33
+ * @LastEditTime: 2020-07-24 18:04:07
  * @FilePath: \blog1\src\router\blog.js
  * @Description: blog
  */ 
@@ -18,9 +18,10 @@
         const author = req.query.author || ''
         const keyword = req.query.keyword || '' 
         const result = getList(author, keyword) //控制器挖取数据库数据(promise)
-        return result.then((listData)=>{
+        const p = result.then((listData)=>{
             return new SuccessModel(listData, '成功获取到了列表') //返回建模后的数据
         })
+        return p
         
         // 返回一个对象实例
         // return {
